@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "248136435209",
+    "project_id": "auto-repair-app1",
+    "storage_bucket": "auto-repair-app1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248136435209:android:1460cd401ad1ab43945ad8",
+        "android_client_info": {
+          "package_name": "com.example.admin_web"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtbSqBFzeWE79AS7DyJRYWoys1UFgHKbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248136435209:android:2f52fad0e51722ed945ad8",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtbSqBFzeWE79AS7DyJRYWoys1UFgHKbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
