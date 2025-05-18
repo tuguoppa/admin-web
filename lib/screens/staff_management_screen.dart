@@ -48,11 +48,11 @@ class _StaffManagementScreenState extends State<StaffManagementScreen> {
     }
 
     if (!RegExp(r'^\d{8}$').hasMatch(phone)) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text('Утасны дугаар 8 оронтой байх ёстой'))
-  );
-  return;
-}
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Утасны дугаар 8 оронтой байх ёстой')),
+      );
+      return;
+    }
 
     final password = generatedPassword ?? _generateRandomPassword();
     final hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -61,7 +61,6 @@ class _StaffManagementScreenState extends State<StaffManagementScreen> {
       UserCredential credential;
 
       if (editingId == null) {
-        // Firebase Authentication дээр ажилтан үүсгэх
         credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
@@ -80,7 +79,9 @@ class _StaffManagementScreenState extends State<StaffManagementScreen> {
 
         await FirebaseFirestore.instance.collection('staffs').doc(credential.user!.uid).set(staffData);
 
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Ажилтан амжилттай бүртгэгдлээ. Нууц үг: $password')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ажилтан амжилттай бүртгэгдлээ. Нууц үг: $password')),
+        );
       } else {
         final staffData = {
           'name': name,
@@ -172,6 +173,10 @@ class _StaffManagementScreenState extends State<StaffManagementScreen> {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('staffs').orderBy('createdAt', descending: true).snapshots(),
         builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(child: Text('Ажилтан байхгүй байна.'));
           }

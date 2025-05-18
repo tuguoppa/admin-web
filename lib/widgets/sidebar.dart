@@ -4,7 +4,7 @@ import '../screens/user_management_screen.dart';
 import '../screens/staff_management_screen.dart';
 import '../screens/service_management_screen.dart';
 import '../screens/sparepart_management_screen.dart';
-
+import '../screens/registeradminscreen.dart';
 class Sidebar extends StatefulWidget {
   const Sidebar({super.key});
 
@@ -62,6 +62,16 @@ class _SidebarState extends State<Sidebar> {
             selected: selectedIndex == 3,
             selectedTileColor: Colors.blue.shade100,
             onTap: () => _navigate(3, const SparePartManagementScreen()),
+          ),
+          ListTile(
+            leading: const Icon(Icons.person_add),
+            title: const Text('Админ бүртгэх'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const RegisterAdminScreen()),
+              );
+            },
           ),
         ],
       ),
